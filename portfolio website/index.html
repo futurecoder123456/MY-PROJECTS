@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alena Polman | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Outfit', sans-serif;
+      background:#f6f5fb;
+      color:#111;
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+      radial-gradient(circle at top left, rgba(168,85,247,.18), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(139,92,246,.15), transparent 35%);
+      z-index:-2;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+      linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px);
+      background-size:45px 45px;
+      opacity:.45;
+      z-index:-1;
+    }
+
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:24px 8%;
+      backdrop-filter:blur(18px);
+      background:rgba(255,255,255,.55);
+      border-bottom:1px solid rgba(0,0,0,.05);
+      z-index:999;
+    }
+
+    .logo{
+      font-size:1.5rem;
+      font-weight:700;
+      color:#7c3aed;
+      letter-spacing:2px;
+    }
+
+    nav ul{
+      display:flex;
+      gap:40px;
+      list-style:none;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#444;
+      font-size:.95rem;
+      transition:.3s;
+    }
+
+    nav a:hover{
+      color:#8b5cf6;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:70px;
+      padding:0 8%;
+    }
+
+    .hero-text{
+      flex:1;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(139,92,246,.12);
+      color:#7c3aed;
+      border:1px solid rgba(139,92,246,.15);
+      margin-bottom:25px;
+      font-size:.92rem;
+    }
+
+    .hero h1{
+      font-size:6rem;
+      line-height:.95;
+      margin-bottom:25px;
+      font-weight:800;
+    }
+
+    .gradient{
+      background:linear-gradient(to right,#7c3aed,#c084fc);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      color:#666;
+      line-height:1.9;
+      max-width:650px;
+      font-size:1.08rem;
+      margin-bottom:40px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 30px;
+      border:none;
+      border-radius:18px;
+      font-family:inherit;
+      cursor:pointer;
+      transition:.3s;
+      font-size:1rem;
+    }
+
+    .primary{
+      background:linear-gradient(to right,#8b5cf6,#c084fc);
+      color:white;
+      box-shadow:0 10px 30px rgba(139,92,246,.25);
+    }
+
+    .primary:hover{
+      transform:translateY(-5px);
+    }
+
+    .secondary{
+      background:white;
+      border:1px solid rgba(0,0,0,.08);
+      color:#111;
+    }
+
+    .secondary:hover{
+      border-color:#8b5cf6;
+      color:#8b5cf6;
+    }
+
+    .card{
+      width:430px;
+      background:rgba(255,255,255,.7);
+      backdrop-filter:blur(24px);
+      border-radius:35px;
+      padding:32px;
+      border:1px solid rgba(255,255,255,.8);
+      box-shadow:
+      0 10px 40px rgba(0,0,0,.06),
+      0 0 40px rgba(139,92,246,.12);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:#c084fc;
+      opacity:.12;
+      top:-70px;
+      right:-60px;
+      filter:blur(25px);
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:35px;
+    }
+
+    .online{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:#8b5cf6;
+      box-shadow:0 0 18px #8b5cf6;
+      animation:pulse 2s infinite;
+    }
+
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.4);}
+      100%{transform:scale(1);}
+    }
+
+    .card h3{
+      margin-top:10px;
+      font-size:1.9rem;
+    }
+
+    .skill{
+      margin-bottom:24px;
+    }
+
+    .skill-top{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:10px;
+      font-size:.95rem;
+    }
+
+    .bar{
+      width:100%;
+      height:10px;
+      border-radius:20px;
+      overflow:hidden;
+      background:#ececf5;
+    }
+
+    .fill{
+      height:100%;
+      border-radius:20px;
+      background:linear-gradient(to right,#8b5cf6,#c084fc);
+    }
+
+    section{
+      padding:120px 8%;
+    }
+
+    .section-tag{
+      color:#8b5cf6;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:.9rem;
+      margin-bottom:15px;
+      font-weight:600;
+    }
+
+    .section-title{
+      font-size:4rem;
+      margin-bottom:50px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .box{
+      background:rgba(255,255,255,.75);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:30px;
+      padding:32px;
+      backdrop-filter:blur(15px);
+      transition:.35s;
+    }
+
+    .box:hover{
+      transform:translateY(-8px);
+      border-color:#c084fc;
+      box-shadow:0 10px 30px rgba(139,92,246,.12);
+    }
+
+    .box h4{
+      font-size:1.4rem;
+      margin-bottom:14px;
+    }
+
+    .box p{
+      color:#666;
+      line-height:1.8;
+    }
+
+    .stack{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .chip{
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(139,92,246,.1);
+      color:#7c3aed;
+      border:1px solid rgba(139,92,246,.12);
+      font-size:.92rem;
+    }
+
+    footer{
+      padding:60px;
+      text-align:center;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:#777;
+      margin-top:80px;
+    }
+
+    @media(max-width:1000px){
+
+      nav ul{
+        display:none;
+      }
+
+      .hero{
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+        padding-top:130px;
+      }
+
+      .hero h1{
+        font-size:4rem;
+      }
+
+      .buttons{
+        justify-content:center;
+      }
+
+      .card{
+        width:100%;
+      }
+
+      .section-title{
+        font-size:3rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+
+    <div class="logo">
+      ALENA POLMAN
+    </div>
+
+    <ul>
+      <li><a href="#stack">Tech Stack</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <section class="hero">
+
+    <div class="hero-text">
+
+      <div class="tag">
+        ✦ Software Engineer + UI Developer
+      </div>
+
+      <h1>
+        building <br>
+        <span class="gradient">smooth digital experiences</span>
+      </h1>
+
+      <p>
+        I build responsive websites, interactive user interfaces,
+        and full-stack applications with a focus on clean design,
+        usability, and modern web technologies. Passionate about
+        blending creativity with software development.
+      </p>
+
+      <div class="buttons">
+        <button class="btn primary">
+          View Projects
+        </button>
+
+        <button class="btn secondary">
+          Contact Me
+        </button>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="card-top">
+
+        <div>
+          <small style="color:#777; letter-spacing:2px;">
+            SYSTEM STATUS
+          </small>
+
+          <h3>ONLINE</h3>
+        </div>
+
+        <div class="online"></div>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-top">
+          <span>Frontend Development</span>
+          <span>96%</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill" style="width:96%"></div>
+        </div>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-top">
+          <span>UI / UX Design</span>
+          <span>92%</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill" style="width:92%"></div>
+        </div>
+
+      </div>
+
+      <div class="skill">
+
+        <div class="skill-top">
+          <span>Full-Stack Development</span>
+          <span>88%</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill" style="width:88%"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="stack">
+
+    <div class="section-tag">
+      Tech Stack
+    </div>
+
+    <h2 class="section-title">
+      Technologies I Use
+    </h2>
+
+    <div class="grid">
+
+      <div class="box">
+
+        <h4>Languages</h4>
+
+        <div class="stack">
+          <div class="chip">Java</div>
+          <div class="chip">C</div>
+          <div class="chip">C#</div>
+          <div class="chip">JavaScript</div>
+          <div class="chip">HTML</div>
+          <div class="chip">CSS</div>
+        </div>
+
+      </div>
+
+      <div class="box">
+
+        <h4>Frameworks & Tools</h4>
+
+        <div class="stack">
+          <div class="chip">Node.js</div>
+          <div class="chip">MongoDB</div>
+          <div class="chip">React</div>
+          <div class="chip">EJS</div>
+          <div class="chip">.NET</div>
+          <div class="chip">GitHub</div>
+          <div class="chip">Jest</div>
+          <div class="chip">Render</div>
+        </div>
+
+      </div>
+
+      <div class="box">
+
+        <h4>Specializations</h4>
+
+        <p>
+          Software Development, responsive UI design,
+          full-stack applications, human-centered design,
+          and interactive web experiences.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="projects">
+
+    <div class="section-tag">
+      Featured Work
+    </div>
+
+    <h2 class="section-title">
+      Selected Projects
+    </h2>
+
+    <div class="grid">
+
+      <div class="box">
+
+        <h4>Charlotte Eats</h4>
+
+        <p>
+          Capstone team project focused on restaurant discovery,
+          reviews, and responsive full-stack functionality.
+        </p>
+
+        <div class="stack">
+          <div class="chip">MongoDB</div>
+          <div class="chip">EJS</div>
+          <div class="chip">JavaScript</div>
+          <div class="chip">CSS</div>
+          <div class="chip">Render</div>
+          <div class="chip">Jest</div>
+        </div>
+
+      </div>
+
+      <div class="box">
+
+        <h4>Thrift Finder</h4>
+
+        <p>
+          Team project designed to help users discover thrift stores
+          through an interactive and responsive interface.
+        </p>
+
+        <div class="stack">
+          <div class="chip">React</div>
+          <div class="chip">Node.js</div>
+          <div class="chip">JavaScript</div>
+          <div class="chip">CSS</div>
+          <div class="chip">EJS</div>
+        </div>
+
+      </div>
+
+      <div class="box">
+
+        <h4>Computer Science Portfolio</h4>
+
+        <p>
+          A curated collection of projects representing my technical
+          growth throughout my Computer Science degree.
+        </p>
+
+        <div class="stack">
+          <div class="chip">Frontend</div>
+          <div class="chip">Backend</div>
+          <div class="chip">UI Design</div>
+          <div class="chip">Architecture</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="education">
+
+    <div class="section-tag">
+      Education
+    </div>
+
+    <h2 class="section-title">
+      Education & Coursework
+    </h2>
+
+    <div class="grid">
+
+      <div class="box">
+
+        <h4>B.S. Computer Science</h4>
+
+        <p>
+          University of North Carolina at Charlotte
+          <br><br>
+          2022 — 2026
+        </p>
+
+      </div>
+
+      <div class="box">
+
+        <h4>Relevant Coursework</h4>
+
+        <p>
+          Human-Centered Design <br>
+          Backend App Development <br>
+          Database Design & Implementation <br>
+          Web Application Design & Development <br>
+          Software Architecture & Design
+        </p>
+
+      </div>
+
+    </section>
+
+    <section id="contact">
+        <div class="section-tag">
+            Contact
+        </div>
+
+        <h2 class="section-title">
+            Contact & Connect with Me
+        </h2>
+
+        <div class="box" id="contact">
+
+            <h4>Let's Connect</h4>
+
+            <p>
+            LinkedIn:
+            <br>
+            linkedin.com/in/alena-polman-2362871b1/
+
+            <br><br>
+
+            Email:
+            <br>
+            alena.lyashkova@gmail.com
+            </p>
+
+        </div>
+
+    </section>
+
+  <footer>
+    © 2026 Alena Polman — designed with code + creativity.
+  </footer>
+
+</body>
+</html>
