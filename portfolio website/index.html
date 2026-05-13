@@ -26,9 +26,7 @@
         #ede3ff 70%,
         #dcc6ff 100%
       );
-      color:#111;
-      overflow-x:hidden;
-      position:relative;
+
     }
 
     body::before{
@@ -280,7 +278,12 @@
     }
 
     section{
+      background: rgba(255,255,255,.35);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.25);
       padding:120px 8%;
+      position: relative;
+      z-index: 1;
     }
 
     .section-tag{
@@ -348,14 +351,6 @@
     transform:translateY(-10px) scale(1.02);
     }
 
-    #projects{
-    background:linear-gradient(
-    to bottom,
-    rgba(124,58,237,.04),
-    rgba(255,255,255,0)
-  ) ;
-  }
-
   #projects .box{
   background:#111;
   color:white;
@@ -367,8 +362,9 @@
   }
 
   #projects .chip{
-  background:rgba(255,255,255,.08);
-  color:#d8b4fe;
+    background:rgba(255,255,255,.12);
+    color:#e9d5ff;
+    border:1px solid rgba(255,255,255,.15);
   }
 
   #education .box{
@@ -395,11 +391,12 @@
   }
 
   footer{
-    padding:60px;
-    text-align:center;
-    border-top:1px solid rgba(0,0,0,.06);
-    color:#777;
-    margin-top:80px;
+    background: rgba(255,255,255,.35);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255,255,255,.25);
+    color:#666;
+    text-align: center;
+    padding:20px 8%;
   }
 
 
@@ -435,31 +432,7 @@
 
   }
 
-  .blob{
-  position:fixed;
-  border-radius:50%;
-  filter:blur(90px);
-  opacity:.18;
-  z-index:-3;
-  animation:float 14s ease-in-out infinite;
-  }
-
-  .blob1{
-  width:350px;
-  height:350px;
-  background:#a855f7;
-  top:10%;
-  left:-120px;
-  }
-
-  .blob2{
-  width:280px;
-  height:280px;
-  background:#c084fc;
-  bottom:5%;
-  right:-100px;
-  animation-delay:4s;
-  }
+  
 
   @keyframes float{
   0%{
@@ -546,8 +519,6 @@ window.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <body>
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
 
   <nav>
 
