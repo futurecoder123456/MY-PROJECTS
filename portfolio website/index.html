@@ -124,9 +124,35 @@
     }
 
     .gradient{
-      background:linear-gradient(to right,#7c3aed,#c084fc);
+        background:linear-gradient(
+        90deg,
+        #7c3aed,
+        #a855f7,
+        #c084fc,
+        #8b5cf6,
+        #7c3aed
+      );
+
+      background-size:300% 300%;
+
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
+
+      animation:waveGradient 6s ease infinite;
+    }
+
+    @keyframes waveGradient{
+      0%{
+        background-position:0% 50%;
+      }
+
+      50%{
+        background-position:100% 50%;
+      }
+
+      100%{
+        background-position:0% 50%;
+      }
     }
 
     .hero p{
@@ -275,9 +301,13 @@
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:30px;
+      align-items:stretch;
     }
 
     .box{
+      display:flex;
+      flex-direction:column;
+      min-height:250px;
       background:rgba(255,255,255,.75);
       border:1px solid rgba(0,0,0,.06);
       border-radius:30px;
@@ -387,7 +417,8 @@
 
       <h1>
         building <br>
-        <span class="gradient">smooth digital experiences</span>
+        <span class="gradient">smooth</span>
+           <span>digital experiences</span>
       </h1>
 
       <p>
