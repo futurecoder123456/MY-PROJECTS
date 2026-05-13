@@ -339,58 +339,215 @@
       margin-top:18px;
     }
 
-    .chip{
-      padding:10px 16px;
-      border-radius:999px;
-      background:rgba(139,92,246,.1);
-      color:#7c3aed;
-      border:1px solid rgba(139,92,246,.12);
-      font-size:.92rem;
+    #stack .box{
+    background:rgba(255,255,255,.55);
+    border:1px solid rgba(139,92,246,.15);
     }
 
-    footer{
-      padding:60px;
+    #stack .box:hover{
+    transform:translateY(-10px) scale(1.02);
+    }
+
+    #projects{
+    background:linear-gradient(
+    to bottom,
+    rgba(124,58,237,.04),
+    rgba(255,255,255,0)
+  ) ;
+  }
+
+  #projects .box{
+  background:#111;
+  color:white;
+  border:none;
+  }
+
+  #projects .box p{
+  color:#bbb;
+  }
+
+  #projects .chip{
+  background:rgba(255,255,255,.08);
+  color:#d8b4fe;
+  }
+
+  #education .box{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.8),
+      rgba(250,240,255,.9)
+    );
+
+  border:1px solid rgba(212,175,55,.25);
+
+  box-shadow:
+    0 0 30px rgba(212,175,55,.08);
+  }
+
+  .chip{
+    padding:10px 16px;
+    border-radius:999px;
+    background:rgba(139,92,246,.1);
+    color:#7c3aed;
+    border:1px solid rgba(139,92,246,.12);
+    font-size:.92rem;
+  }
+
+  footer{
+    padding:60px;
+    text-align:center;
+    border-top:1px solid rgba(0,0,0,.06);
+    color:#777;
+    margin-top:80px;
+  }
+
+
+
+  @media(max-width:1000px){
+
+    nav ul{
+      display:none;
+    }
+
+    .hero{
+      flex-direction:column;
+      justify-content:center;
       text-align:center;
-      border-top:1px solid rgba(0,0,0,.06);
-      color:#777;
-      margin-top:80px;
+      padding-top:130px;
     }
 
-    @media(max-width:1000px){
-
-      nav ul{
-        display:none;
-      }
-
-      .hero{
-        flex-direction:column;
-        justify-content:center;
-        text-align:center;
-        padding-top:130px;
-      }
-
-      .hero h1{
-        font-size:4rem;
-      }
-
-      .buttons{
-        justify-content:center;
-      }
-
-      .card{
-        width:100%;
-      }
-
-      .section-title{
-        font-size:3rem;
-      }
-
+    .hero h1{
+      font-size:4rem;
     }
+
+    .buttons{
+      justify-content:center;
+    }
+
+    .card{
+      width:100%;
+    }
+
+    .section-title{
+      font-size:3rem;
+    }
+
+  }
+
+  .blob{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.18;
+  z-index:-3;
+  animation:float 14s ease-in-out infinite;
+  }
+
+  .blob1{
+  width:350px;
+  height:350px;
+  background:#a855f7;
+  top:10%;
+  left:-120px;
+  }
+
+  .blob2{
+  width:280px;
+  height:280px;
+  background:#c084fc;
+  bottom:5%;
+  right:-100px;
+  animation-delay:4s;
+  }
+
+  @keyframes float{
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-40px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+  }
 
   </style>
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  const educationSection = document.querySelector("#education");
+
+  let triggered = false;
+
+  function launchConfetti() {
+
+    const duration = 3000;
+    const end = Date.now() + duration;
+
+    const colors = [
+      "#d4af37",
+      "#14532d",
+      "#000000"
+    ];
+
+    (function frame() {
+
+      confetti({
+        particleCount: 12,
+        spread: 120,
+        startVelocity: 45,
+        origin: { x: 0, y: 0.6 },
+        colors: colors
+      });
+
+      confetti({
+        particleCount: 12,
+        spread: 120,
+        startVelocity: 45,
+        origin: { x: 1, y: 0.6 },
+        colors: colors
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+
+    })();
+
+  }
+
+  window.addEventListener("scroll", () => {
+
+    const rect = educationSection.getBoundingClientRect();
+
+    if (
+      rect.top < window.innerHeight * 0.7 &&
+      !triggered
+    ) {
+
+      triggered = true;
+      launchConfetti();
+
+    }
+
+  });
+
+});
+
+</script>
+
 <body>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
 
   <nav>
 
@@ -518,6 +675,7 @@
         <div class="stack">
           <div class="chip">Java</div>
           <div class="chip">C</div>
+          <div class="chip">C++</div>
           <div class="chip">C#</div>
           <div class="chip">JavaScript</div>
           <div class="chip">HTML</div>
@@ -539,6 +697,11 @@
           <div class="chip">GitHub</div>
           <div class="chip">Jest</div>
           <div class="chip">Render</div>
+          <div class="chip">Swagger UI</div>
+          <div class="chip">Postman</div>
+          <div class="chip">Visual Studio Code</div>
+          <div class="chip">Figma</div>
+          <div class="chip">Filezilla</div>
         </div>
 
       </div>
@@ -550,7 +713,14 @@
         <p>
           Software Development, responsive UI design,
           full-stack applications, human-centered design,
-          and interactive web experiences.
+          and interactive web experiences.</p> <p>I also specialize 
+          in software architecture, database design, and
+          API development, with a focus on creating scalable
+          and maintainable solutions that blend functionality
+          with user-centric design principles. I also specialaize with
+          team leading, project management, and collaborative development,
+          ensuring successful project delivery and effective communication
+          across cross-functional teams.
         </p>
 
       </div>
@@ -629,6 +799,19 @@
       </div>
 
     </div>
+
+    </section>
+
+  <section id="experience">
+
+    <div class="section-tag">
+      Work Experience
+    </div>
+
+    <h2 class="section-title">
+      Related Work Experience
+    </h2>
+
 
   </section>
 
